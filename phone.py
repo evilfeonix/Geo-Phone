@@ -227,7 +227,7 @@ def infoga(cncode,number):
                 # https://api.what3words.com/v3/convert-to-3wa?coordinates=0.565656%2C0.656565&language=it&format=json
                 # https://google.com/map/place/0.565656,0.656565/@0.565656,0.656565,16z
 
-                url="https://api.what3words.com/v3/convert-to-3wa?coordinates=%s%2C%s&language=it&format=json"%(lat,lng)
+                url="ttps://google.com/map/place/0.565656,0.656565/@0.565656,0.656565,16z"%(lat,lng)
                 webbrowser.open(url,new=1,autoraise=True)
             except NameError:
                 time.sleep(1)
