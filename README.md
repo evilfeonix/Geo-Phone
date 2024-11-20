@@ -22,12 +22,12 @@ This Python script will:
 
 
 ## is Available on:
-      - *Termux*
-      - *Kali Linux*
+- *Termux*
+- *Kali Linux*
 
     
 ## Installation in Termux and Usage:
-	Download Termux app from google play store and type following commands:
+Download Termux app from google play store and type following commands:
     
 ```
       pkg update && apt upgrade
@@ -52,7 +52,7 @@ This Python script will:
 ```
 
 
-	Download and Install kali-linux from their official website and type following commands:
+Download and Install kali-linux from their official website and type following commands:
  
 ```
       sudo apt update && sudo apt upgrade
