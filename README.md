@@ -95,17 +95,10 @@ Download and Install kali-linux from their official website and type following c
 ### Geo-Trace Map
 A sample of **Geo Trace** outputed map:
 
-![EvilFeonix Basic v1.0](https://github.com/evilfeonix/Geo-Trace/blob/main/maps.png)
+![EvilFeonix Basic v1.0](https://github.com/evilfeonix/Geo-Trace/blob/main/maps.jpg)
 
 ### License
 
 [GNU General Public License v3.0](https://github.com/VirusZzHkP/Email-Spoofing/blob/main/LICENSE)
 
-### Follow Us
-website: https://www.evilfeonix.com
 
-web-blog: https://www.evilfeonix.com/blog
-
-youtube: https://www.youtube.com/@3V1LF30N1X
-
-linkedin: https://www.linkedin.com/evilfeonix
