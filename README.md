@@ -92,6 +92,10 @@ Download and Install kali-linux from their official website and type following c
             | python3 phone.py -a F30N1X            | About Tool & Author
             | python3 phone.py -c 234 -p 7000000000 | Specify victim's Country Code & Phone Number
 ```
+### Geo-Trace Map
+A sample of **Geo Trace** outputed map:
+
+![EvilFeonix Basic v1.0](https://github.com/evilfeonix/Geo-Trace/blob/main/maps.png)
 
 ### License
 
