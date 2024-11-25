@@ -9,53 +9,36 @@ import os,sys,time,argparse
 # Email: evilfeonix@gmail.com 
 
 
-##### This is an Information Gathering tool based on SIM and it Country
-##### Geo-Trace was build with the help of python programming language
-##### The purpose of this script can be catagorized in-to three (3)
-##### First step: Fetch information on a given phone number and it country
-##### Second step: Track the location of the phone number
-##### Third step: Generate a link that will directly track down the phone number on a map
+#####    A free and open source OSINT tool that enables users to gathers information, track and map phone numbers from around the world.
+#####    Geo-Trace is a Python-based project designed to track and map phone numbers globally. 
+#####    By leveraging phone number data, Geo-Trace helps users determine the country of origin for any given number and displays its approximate location on a map. 
+#####    Whether you're curious about the origin of a call or need location data for analysis, Geo-Trace offers a simple and accessible solution for anyone interested in phone number tracking.
+#####    With Geo-Trace, you can visualize phone data on a map, providing both geographic insights and a practical tool for anyone interested in telecommunications and data visualization.
 
-
-# stop="\033[0m"
-# red="\033[31;1m"
-# blue="\033[34;1m"
-# green="\033[32;1m"
-# yellow="\033[33;1m"
-# purple="\033[35;1m"
-# cyan="\033[36;1m"
-# info2 = "%s[%s•%s]%s "%(green,stop,green,purple)
-# info = "%s[%s+%s]%s "%(red,stop,red,yellow)
-# error = "%s[%s!%s]%s "%(blue,stop,blue,red)
-# success = "%s[%s√%s]%s "%(purple,stop,purple,green)
 
 stop="\033[0m"
 red="\033[31;1m"
-d_red="\033[91m"
 cyan="\033[36;1m"
 blue="\033[34;1m"
+darkred="\033[91m"
 green="\033[32;1m"
 yellow="\033[33;1m"
 purple="\033[35;1m"
 
 
-error="%s[%s-%s]%s "%(blue,stop,blue,red)
-info2="%s[%s•%s]%s "%(green,stop,green,purple)
-add="%s[%s+%s]%s "%(red,stop,red,yellow)
-notice="%s[%s!%s]%s "%(blue,stop,blue,red)
-success="%s[%s√%s]%s "%(purple,stop,purple,green)
-first= "%s[%s01%s]%s "%(green,stop,green,purple)
-second= "%s[%s02%s]%s "%(green,stop,green,purple)
-third= "%s[%s03%s]%s "%(green,stop,green,purple)
+add=f"{red}[{stop}+{red}]{purple} "
+error=f"{blue}[{stop}-{blue}]{red} "
+info=f"{green}[{stop}•{green}]{purple} "
 version = "2.0.1.6"
 
-lib = ["countryinfo","lolcat","pyfiglet","requests","phonenumbers","opencage"]
 
-def slow(dhf):
+def slow(F3):
     for a in dhf + '\n':sys.stdout.write(a),sys.stdout.flush(),time.sleep(1./300)
-def loadbr(y):
+def load(F3):
     for x in y:sys.stdout.write(x),sys.stdout.flush(),time.sleep(1./300)
     for a in '...'+'\n':sys.stdout.write(a),sys.stdout.flush(),time.sleep(1)
+lib = ["countryinfo","lolcat","pyfiglet","requests","phonenumbers","opencage"]
+
 
 def F30N1X():
     usage = """
@@ -76,12 +59,21 @@ def F30N1X():
     return usage
     os.sys.exit()
 
-# try:import lolcat, pyfiglet, requests, opencage, countryinfo, phonenumbers
-try:import pyfiglet, requests, opencage, countryinfo, phonenumbers
+
+try:import pyfiglet, lolcat
+except ModuleNotFoundError:
+    slow(f"\n{notice}Attention!!!.")
+    slow(f"{info2}You will firstly need to run:{stop}")
+    slow("     pip install -r requirements.txt")
+    slow(f"{yellow}Before trying to run the main script.")
+    os.sys.exit()
+
+
+try:import requests, opencage, countryinfo, phonenumbers
 except ModuleNotFoundError:
     os.system("pyfiglet Geo-Trace | lolcat")
-    slow("\t%sSetting up ur environment%s"%(info2,stop))
-    for i in lib:os.system("pip install %s"%(i))
+    load(f"\t{info}Setting up your environment{stop}")
+    for i in lib:os.system(f"pip install {i}")
     os.system("pip install webbrowser")
     os.system("pip install lolcat")
     os.system("clea" + "r || cls")
@@ -101,25 +93,24 @@ def internet():
     
 def aboutus():
     os.system("clea" + "r || cls")
-    os.system("pyfiglet Geo-Phone | lolcat")
-    slow("%s"%(red))
+    os.system(f"pyfiglet Geo-Phone | lolcat{red}")
     slow("="*60)
-    slow('\t%sTool Name      %s:>>%s  Geo-Trace'%(info2,blue,purple))
-    slow('\t%sVersion        %s:>>%s  v[%s]'%(info2,blue,purple,version[:-2]))
-    slow('\t%sAuthor         %s:>>%s  F30N1X'%(info2,blue,d_red))
-    slow('\t%sGithub         %s:>>%s  Evil %sFeoniX'%(info2,blue,purple,d_red))
-    slow('\t%sYoutube        %s:>>%s  Evil %sFeoniX'%(info2,blue,purple,d_red))
-    slow('\t%sLatest Update  %s:>>%s  14-11-2024'%(info2,blue,purple))
-    slow('\t%sWebsite        %s:>>%s  www.evilfeonix.com%s'%(info2,blue,purple,red))
+    slow(f'\t{info}Tool Name      {blue}:>>{purple}  Geo-Trace')
+    slow(f'\t{info}Version        {blue}:>>{purple}  v[{version[:-2]}]')
+    slow(f'\t{info}Author         {blue}:>>{purple}  evilfeonix')
+    slow(f'\t{info}Github         {blue}:>>{purple}  Evil {darkred}FeoniX')
+    slow(f'\t{info}Youtube        {blue}:>>{purple}  Evil {darkred}FeoniX')
+    slow(f'\t{info}Latest Update  {blue}:>>{purple}  24-11-2024')
+    slow(f'\t{info}Website        {blue}:>>{purple}  www.evilfeonix.com{red}')
     slow("="*60)
     slow("")
-    act=input('%sPress %s[%sENTER%s]%s To Continue%s'%(add,purple,stop,purple,yellow,stop))
+    act=input(f'{add}Press {purple}[{stop}ENTER{purple}]{yellow} To Continue{stop}')
     os.sys.exit()
     
 def updateus():
     os.system("clea" + "r || cls")
     os.system("pyfiglet Geo-Trace | lolcat")
-    loadbr("Checking For Update")
+    load(f"{add}Checking For Update")
     server=requests.get("https://github.com/evilfeonix/Geo-Trace/blob/main/phone.py")
     sertxt=server.text
     sertxt=sertxt.replace("\n","")
@@ -128,24 +119,25 @@ def updateus():
     with open(sys.argv[0], 'r') as fr:
         client = fr.read()
         if not server==client:
-            slow("\rUpdate Found!")
+            slow(f"{add}Update Found!")
             time.sleep(1)
-            act=input('%sPress %s[%sENTER%s]%s To Continue%s'%(add,purple,stop,purple,yellow,stop))
+            act=input(f'{add}Press {purple}[{stop}ENTER{purple}]{yellow} To Continue{stop}')
             os.system("clea" + "r || cls")
-            loadbr("Updating Geo-Trace!")
+            os.system("pyfiglet Geo-Trace | lolcat")
+            load(f"{add}Updating Geo-Trace!")
             time.sleep(4)
             with open(sys.argv[0], 'w+') as fw:
                 fw.write(sertxt)
-            slow("Geo-Trace Successfully Updated.")
+            slow(f"{add}Geo-Trace Successfully Updated.{stop}")
             os.sys.exit()
-        slow("Geo-Trace is up-to date!")
+        slow(f"{add}Geo-Trace is up-to date!{stop}")
         os.sys.exit()
 
 
 def infoga(cncode,number):
     try:
-        num = "+%s%s"%(cncode,number)
-        phoneNumber = phonenumbers.parse(num)#+
+        num = f"+{cncode}{number}"
+        phoneNumber = phonenumbers.parse(num)
         inter = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.INTERNATIONAL)
         nation = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.NATIONAL)
         e164 = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.E164)
@@ -161,41 +153,41 @@ def infoga(cncode,number):
             iso = country.iso()["alpha2"]
             slow("\033[31;1m")
             slow("="*60)
-            slow("[!] Attemting to track location of %s  [!]" % (inter.replace(" ","-")))
+            slow(f"[!] Attemting to track location of {inter.replace(" ","-")}  [!]")
             slow("="*60)
-            loadbr("\t%sRunning local scan"%(purple))
-            slow("\t%sInternational Format%s :>>  %s%s"%(cyan,blue,green,inter))
-            slow("\t%sNational Format%s :>>  %s%s"%(cyan,blue,green,nation))
-            slow("\t%sE164 Format%s :>>  %s%s"%(cyan,blue,green,e164))
-            slow("\t%sLocal Format%s :>>  %s%s"%(cyan,blue,green,local))
-            slow("\t%sCountry Found%s :>>  %s+%s (%s)"%(cyan,blue,green,cncode,iso))
+            load(f"\t{purple}Running local scan")
+            slow(f"\t{cyan}International Format{blue} :>>  {green}{inter}")
+            slow(f"\t{cyan}National Format{blue} :>>  {green}{nation}")
+            slow(f"\t{cyan}E164 Format{blue} :>>  {green}{e164}")
+            slow(f"\t{cyan}Local Format{blue} :>>  {green}{local}")
+            slow(f"\t{cyan}Country Found{blue} :>>  {green}+{cncode} ({iso})")
             time.sleep(1/3)
             
-            Do = input("%sDo u want to get country infomation %s[%sYes%s/%snO%s]%s :>>  %s"%(info2,blue,stop,blue,stop,blue,red,green))
+            Do = input(f"{info}Do you want to get country infomation {blue}[{stop}Yes{blue}/{stop}nO{blue}]{%red} :>>  {green}")
             
             if Do.upper() in ["YES","Y"]:
                 data = country.info()
-                loadbr("\t%sCollecting country info"%(purple))
+                load(f"\t{purple}Collecting country info")
                 for i, j in data.items():
-                    slow("\t%s%s %s :>> %s%s"%(cyan,i,blue,green,j))
-            elif Do.upper() in ["NO","N"]:slow("%sWe hope u know what u are doing!!!"%(info2))
+                    slow(f"\t{cyan}{i} {blue} :>> {green}{j}")
+            elif Do.upper() in ["NO","N"]:slow(f"{info}We hope you know what you are doing!!!")
             else:
                 time.sleep(1)
-                slow("\t%sInvalid Option%s"%(error,stop))
+                slow(f"\t{error}Invalid Option{stop}")
                 os.sys.exit()
                 
-            slow("\t%sCity/Area%s :>>  %s%s (+%s)"%(cyan,blue,green,gcd,cncode))
-            slow("\t%sTime Zone ID%s :>>  %s%s"%(cyan,blue,green,tz))
-            slow("\t%sService Providers%s :>>  %s%s"%(cyan,blue,green,c))
-            if (phonenumbers.is_valid_number(phoneNumber)):slow("\t%sChacking Validation%s :>> %s Found"%(cyan,blue,green))
-            else:slow("\t%sChacking Validation%s :>> %s Not Found"%(cyan,blue,red))
+            slow(f"\t{cyan}City/Area{blue} :>>  {green}{gcd} (+{cncode})")
+            slow(f"\t{cyan}Time Zone ID{blue} :>>  {green}{tz}")
+            slow(f"\t{cyan}Service Providers{blue} :>>  {green}{c}")
+            if (phonenumbers.is_valid_number(phoneNumber)):slow(f"\t{cyan}Chacking Validation{blue} :>> {green} Found")
+            else:slow(f"\t{cyan}Chacking Validation{blue} :>> {red} Not Found")
             
-            loadbr("\t%sRunning Numverify.com scan"%(purple))
-            slow("\t%sNumber%s :>> %s (+%s) %s"%(cyan,blue,green,cncode,local))
-            slow("\t%sCountry%s :>> %s %s (%s)"%(cyan,blue,green,gcd,iso))
-            slow("\t%sLocation%s :>> %s Found"%(cyan,blue,green))
+            load(f"\t{purple}Running Numverify.com scan")
+            slow(f"\t{cyan}Number{blue} :>> {green} (+{cncode}) {local}")
+            slow(f"\t{cyan}Country{blue} :>> {green} {gcd} ({iso})")
+            slow(f"\t{cyan}Location{blue} :>> {green} Found")
             
-            loadbr("\t%sChecking for approximate location"%(purple))
+            load(f"\t{purple}Checking for approximate location")
             try:
                 # Key = "42c84373c47e490ba410d4132ae64fc4"
                 Key = "03c48dae07364cabb7f121d8c1519492"
@@ -204,21 +196,21 @@ def infoga(cncode,number):
                 results = code.geocode(query)
                 lat = results[0]['geometry']['lat']
                 lng = results[0]['geometry']['lng']
-                slow("\t%sLatitude%s :>>  %s%s%s, %sLongitude%s :>>  %s%s"%(cyan,blue,green,lat,stop,cyan,blue,green,lng))
+                slow(f"\t{cyan}Latitude{blue} :>>  {green}{lat}{stop}, {cyan}Longitude{blue} :>>  {green}{lng}")
                 addr = coder.reverse_geocode(lat,lng)
                 if addr:
                     address = addr[0] ['formatted']
-                    slow("\t%sApproximate Location%s :>>  %s%s"%(purple,red,green,address))
-                else:slow("\t%sNo address found for the given co-ordinates."%(info2))
+                    slow(f"\t{purple}Approximate Location{red} :>>  {green}{address}")
+                else:slow(f"\t{info}No address found for the given phone number.")
             except Exception:
                 time.sleep(1)
-                slow("\t%sPlease check ur internet connection.%s"%(error,stop))
+                slow(f"\t{error}Please check your internet connection.{stop}")
                 os.sys.exit()
                 
             try:import webbrowser
             except ModuleNotFoundError:
                 time.sleep(1)
-                slow('%sU will have to install "webbrowser" manually\n    type "pip install webbrowser" to install webbrowser.%s'%(error,stop))
+                slow(f'{error}U will have to install "webbrowser" manually\n    type "pip install webbrowser" to install webbrowser.{stop}')
                 os.sys.exit()
                 
             try:
@@ -227,18 +219,18 @@ def infoga(cncode,number):
                 # https://api.what3words.com/v3/convert-to-3wa?coordinates=0.565656%2C0.656565&language=it&format=json
                 # https://google.com/map/place/0.565656,0.656565/@0.565656,0.656565,16z
 
-                url="ttps://google.com/map/place/0.565656,0.656565/@0.565656,0.656565,16z"%(lat,lng)
+                url=f"https://google.com/maps/place/{lat},{lng}/@{lat},{lng},16z" 
                 webbrowser.open(url,new=1,autoraise=True)
             except NameError:
                 time.sleep(1)
-                slow("\t%sCould not get Aerial Coverage for this number.%s"%(error,stop))
+                slow(f"\t{error}Could not get Aerial Coverage for this number.{stop}")
                 os.sys.exit()
-            loadbr("\t%sRunning OVH scan"%(purple))
-            loadbr("\t%sRunning OSINT footprint reconnissance"%(purple))
-            slow("\t%sGenerating scan URL on 411.com!"%(green))
-            slow("\t%sScan URL %s:>>%s https://www.411.com/phone/%s"%(cyan,blue,green,inter.replace(" ","-")))
+            load(f"\t{purple}Running OVH scan")
+            load(f"\t{purple}Running OSINT footprint reconnissance")
+            slow(f"\t{green}Generating scan URL on 411.com!")
+            slow(f"\t{cyan}Scan URL {blue}:>>{green} https://www.411.com/phone/{inter.replace(" ","-")}")
             time.sleep(2)
-            slow("\t%s\nPrograms rans Successfully\nThanks for Using this Tool%s"%(green,stop))
+            slow(f"\t{green}\nPrograms rans Successfully\nThanks for Using this Tool{stop}")
             os.sys.exit()
             
         else:
@@ -247,25 +239,25 @@ def infoga(cncode,number):
             gcd = gc
             slow("\033[31;1m")
             slow("="*60)
-            slow("[!] Attemting to track location of %s [!]" % (inter.replace(" ","-")))
+            slow(f"[!] Attemting to track location of {inter.replace(" ","-")} [!]")
             slow("="*60)
-            loadbr("\t%sRunning local scan"%(purple))
-            slow("\t%sInternational Format%s :>>  %s%s"%(cyan,blue,red,number))
-            slow("\t%sNational Format%s :>>  %s%s"%(cyan,blue,red,nation))
-            slow("\t%sE164 Format%s :>>  %s%s"%(cyan,blue,red,e164))
-            slow("\t%sLocal Format%s :>>  %s%s"%(cyan,blue,red,local))
-            slow("\t%sCountry%s :>> %s Not Found"%(cyan,blue,red))
-            slow("\t%sCity/Area%s :>>  %s%s"%(cyan,blue,red,gcd))
-            slow("\t%sTime Zone ID%s :>>  %s%s"%(cyan,blue,red,tz[0]))
-            slow("\t%sService Providers%s :>>  %s%s"%(cyan,blue,red,cc))
-            if (phonenumbers.is_valid_number(phoneNumber)):slow("\t%sChacking Validation%s :>> %s Not Found"%(cyan,blue,red))
-            else:slow("\t%sChacking Validation%s :>> %s Not Found"%(cyan,blue,red))
+            load(f"\t{cyan}Running local scan"%(purple))
+            slow(f"\t{cyan}International Format{blue} :>>  {red}{number}")
+            slow(f"\t{cyan}National Format{blue} :>>  {red}{nation}")
+            slow(f"\t{cyan}E164 Format{blue} :>>  {red}{e164}")
+            slow(f"\t{cyan}Local Format{blue} :>>  {red}{local}")
+            slow(f"\t{cyan}Country{blue} :>> {red} Not Found")
+            slow(f"\t{cyan}City/Area{blue} :>>  {red}{gcd}")
+            slow(f"\t{cyan}Time Zone ID{blue} :>>  {red}{tz[0]}")
+            slow(f"\t{cyan}Service Providers{blue} :>>  {red}{cc}")
+            if (phonenumbers.is_valid_number(phoneNumber)):slow(f"\t{cyan}Chacking Validation{blue} :>> {red} Not Found")
+            else:slow(f"\t{cyan}Chacking Validation{blue} :>> {red} Not Found")
             time.sleep(1)
-            slow("\n%sThe phone number specified here was invalid!.\n    Please specify a valid phone number and make sure that the country code u provided is corresponded to the phone number.%s\n"%(error,stop))
+            slow(f"\n{error}The phone number specified here was invalid!.\n{error}Please specify a valid phone number and make sure that the country code you provided is corresponded to the phone number.{stop}\n")
             os.sys.exit() 
     except Exception as err:
         time.sleep(1)
-        slow ("\n%sCould not get the location of this number. Please specify a valid phone number %s\n"%(error,stop))
+        slow (f"\n{error}Could not get the location of this number. Please specify a valid phone number {stop}\n")
         os.sys.exit() 
 
 def main():
@@ -279,8 +271,8 @@ def main():
     cncode = argument.coutry_code
     update = argument.update_script
     about = argument.about_tool
-    if internet():
-        slow("\n%sPlease check your internet connection%s"%(error,stop))
+    if not internet():
+        slow(f"\n{error}Please check your internet connection{stop}")
         os.sys.exit()
     if update:updateus()
     elif str(about).upper() in ["FEONIX","F30N1X"]:aboutus()
