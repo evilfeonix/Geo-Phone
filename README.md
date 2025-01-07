@@ -45,7 +45,7 @@ Download Termux app from google play store and type following commands:
       cd Geo-Trace
 ```
 ```
-      pip install -r requirements.txt
+      bash installer.sh
 ```
 ```
       python3 phone.py -c <countryCode> -p <phoneNumber>
@@ -70,7 +70,7 @@ Download and Install kali-linux from their official website and type following c
       cd Geo-Trace
 ```
 ```
-      pip install -r requirements.txt
+      bash installer.sh
 ```
 ```
       python3 phone.py -c <countryCode> -p <phoneNumber>
