@@ -1,4 +1,4 @@
-import os, sys, time, argparse
+import os, sys, time, socket, argparse
 
 
 # Versoin: 2.0.2
@@ -60,10 +60,9 @@ def F30N1X():
 
 
 try:import requests, opencage, countryinfo, phonenumbers
-
 except ModuleNotFoundError:
     load(f"\n{red}[!] Ops! Sorry,"                                    )
-    slow(f'{info}Look Like This Script Is Missing Some Requirment.   ')
+    slow(f'{info}Look Like This Script Is Missing Some Requirment.{red}')
     slow('===========================================================')
     slow(f'        {green}Run: {purple}bash installer.sh{red}  	     ')
     slow('===========================================================')
@@ -76,7 +75,7 @@ from phonenumbers import carrier, timezone, geocoder
 
 def internet():
     try:
-        s = socket(AF_NET, SOCK_STREAM)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect_ex(("www.google.com",80))
         return True
     except Exception:return False
@@ -92,7 +91,7 @@ def aboutus():
     slow(f'\t{info}Author         {blue}:>>{purple}  evilfeonix')
     slow(f'\t{info}Github         {blue}:>>{purple}  Evil {red}FeoniX')
     slow(f'\t{info}Youtube        {blue}:>>{purple}  Evil {red}FeoniX')
-    slow(f'\t{info}Latest Update  {blue}:>>{purple}  30-12-2024')
+    slow(f'\t{info}Latest Update  {blue}:>>{purple}  30-01-2025')
     slow(f'\t{info}Website        {blue}:>>{purple}  www.evilfeonix.com{red}')
     slow("===========================================================")
 
@@ -325,8 +324,8 @@ def main():
     update = argument.update_script
     about = argument.about_tool
 
-    # if not internet():
-    if internet():
+    # if internet():
+    if not internet():
         slow(f"\n{error}Please Check Your Internet Connection{stop}\n")
         os.sys.exit()
 
