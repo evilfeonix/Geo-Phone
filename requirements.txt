@@ -1,3 +1,0 @@
-lolcat
-pyfiglet
-echo -e "lolcat\npyfiglet" > requirements.txt
