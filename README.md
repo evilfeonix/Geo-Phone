@@ -4,7 +4,6 @@
 
 ![EvilFeonix Basic v1.0](https://github.com/evilfeonix/Geo-Trace/blob/main/phone.png)
 
-# Geo-Trace
 **Geo-Trace** is an OSINT tool that enables users to track and map phone numbers from around the world. With a user-friendly interface, **GeoTrace** provides quick insights into the origin of any phone number, displaying the country and marking an approximate location on a map. 
 
 
