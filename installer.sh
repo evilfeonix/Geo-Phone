@@ -5,7 +5,7 @@
 # Date: 28 - DECEMBER - 2024
 # Website: www.evilfeonix.com 
 # Email: evilfeonix@gmail.com 
-# Name: Geo-Trace Setup Wizerd
+# Name: Geo-Phone Setup Wizerd
 
 
 S="\e[0m"
@@ -26,14 +26,53 @@ LIB=("requests"
 	 "countryinfo" 
 	 "phonenumbers")
 
+function slow() {
+    local F3="$1"
+    local color="$2"  # Optional color argument (default: no color)
+
+    # Print the color code if provided
+    if [[ -n "$color" ]]; then
+        echo -ne "$color"
+    fi
+
+    # Print each character with a slight delay
+    for (( i=0; i<${#F3}; i++ )); do
+        echo -n "${F3:$i:1}"
+        sleep 0.003  # Delay between characters
+    done
+
+    # Reset formatting
+    if [[ -n "$color" ]]; then
+        echo -ne "$S"  # Reset color
+    fi
+    echo
+}
+
 function load()
 {
-	dot=(. . . '\n')
+	local F3="$1"
+	local color="$2"
+	
+	if [[ -n "$color" ]]; then
+        echo -ne "$color"  # Reset color
+    fi
+    
+    for (( i=0; i<${#F3}; i++ ))
+	do
+        echo -n -e "${F3:$i:1}"
+        sleep 0.003  # Delay between characters
+    done
+	dot=(. . .)
 	for i in "${dot[@]}"
 	do
-		echo -e -n $i
+		echo -n $i
 		sleep $((1))
 	done
+	
+	if [[ -n "$color" ]]; then
+        echo -ne "$S"  # Reset color
+    fi
+	echo
 }
 
 function installed()
@@ -53,9 +92,10 @@ function internet()
 
 function setupEnv()
 {
-    clear || clr || cls
-	figlet Geo-Trace | lolcat || figlet Geo-Trace
-    echo -e -n  $INFO "Setting Up Your Environment"$S;load
+    clear || cls
+	figlet Geo-Phone | lolcat 
+	
+    load " Setting Up Your Environment" "$INFO"
 
     for i in "${LIB[@]}"
 	do
@@ -64,41 +104,35 @@ function setupEnv()
 
     pip install webbrowser
 
-	echo -e  $INFO  "Installation Successfully Finished."
-	echo -n -e  $INFO  'Press '$P'['$S'ENTER'$P'] '$G'To Continue'$S
-	read act 
-	echo -n -e  $INFO  'Loading, Please Wait!'$S
-	load
+	slow " Installation Successfully Finished." "$INFO"
+	slow " Press [ENTER] To Continue" "$INFO"
+	read act;load " Loading, Please Wait!" "$INFO"
 }
 
 function F30N1X()
 {
-	local USAGE
-
-    USAGE="""
- Useage: python3 phone.py [OPTION...]\n
-------------\n
-\t | OPTIONS\n
-\t |----------\n
-\t\t\t| -u <Script Updating>       | Update Geo-Trace Script for Better performance\n
-\t\t\t| -a <About Tool & Author>   | About Tool and Author's Contact Information\n
-\t\t\t| -c <Victim's Country Code> | Specify Victim's Country Code WithOut "+" .eg 234\n
-\t\t\t| -p <Victim's Phone Number> | Specify Victim's Phone Number\n
-\t | EXAMPLES\n
-\t |----------\n
-\t\t\t| python3 phone.py -u                   | Script Updating\n
-\t\t\t| python3 phone.py -a F30N1X            | About Tool & Author\n
-\t\t\t| python3 phone.py -c 234 -p 7000000000 | Specify victim's Country Code & Phone Number\n   
-    """
-
-    clear || clr || cls
-    echo -e $USAGE
+	local USAGE="
+Usage: python3 phone.py [OPTION...]
+------------
+      | OPTIONS
+      |----------
+            | -u <Script Updating>       | Update Geo-Phone Script for Better performance
+            | -a <About Tool & Author>   | About Tool and Author's Contact Information
+            | -c <Victim's Country Code> | Specify Victim's Country Code Without \"+\" .eg 234
+            | -p <Victim's Phone Number> | Specify Victim's Phone Number'
+      | EXAMPLES
+      |----------
+            | python3 phone.py -u                   | Script Updating
+            | python3 phone.py -a F30N1X            | About Tool & Author
+            | python3 phone.py -c 234 -p 7000000000 | Specify victim's Country Code & Phone Number         
+    "
+    echo "$USAGE"
 	exit
 }
 
 function redirection()
 {
-	figlet Geo-Trace | lolcat &>> log
+	figlet Geo-Phone | lolcat &>> log
 	if [[ $? == 0 ]]; then
 		setupEnv
 	elif [[ $? != 0 ]] && [[ $TRACKER == 2 ]]; then
@@ -111,18 +145,21 @@ function redirection()
 function main()
 {
 	internet
-  if [[ $? != 0  ]]; then
-		echo -e -n '\n'$ERR'Please Check Your Internet Connection'
-		load
+	if [[ $? != 0  ]]; then 
+		slow '\n'
+		load " Please Check Your Internet Connection" "$ERR"
+		slow '\n'
 		exit 
 	fi
 
 	installed
 
+    	clear || cls
  	F30N1X
 	exit
 }
 
 
 main
+
 
