@@ -9,17 +9,6 @@
 
 This tool is ideal for anyone curious about incoming calls, telecom data analysis, or exploring how phone numbers are distributed across regions. GeoTrace combines the power of Python with interactive mapping to make phone number tracking easy, insightful, and visually engaging.
 
-
-## Geo-Trace: Beginner Gray Hat Hacking
-**Geo-Trace**, is a basic Python script that aimed to Fetch and information based on the given phone number and it country, before tracking and mapping the phone phone numbers.
-
-This Python script will:
-
-1. Fetch and gather information on a given phone number.
-2. track and display the approximately location (country, state, and street) on the screen.
-3. and also map the phone number using the coordinate (latitud, and langitude) by directing user to a map.
-
-
 ## is Available on:
 - *Termux*
 - *Kali Linux*
