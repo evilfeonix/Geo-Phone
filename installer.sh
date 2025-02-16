@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Versoin: 1.1
+# Versoin: 1.2
 # Author: evilfeonix
 # Date: 28 - DECEMBER - 2024
 # Website: www.evilfeonix.com 
@@ -16,17 +16,17 @@ P="\e[95m"
 Y="\e[43m"
 
 
-SCRIPT=$0
-let TRACKER=0
 ERR="$G[$S-$G]$R "
 INFO="$R[$S+$R]$G "
 
-LIB=("requests"
+LIB=("urllib2"
+	 "requests"
 	 "opencage"
 	 "countryinfo" 
 	 "phonenumbers")
 
-function slow() {
+function slow()
+{
     local F3="$1"
     local color="$2"  # Optional color argument (default: no color)
 
@@ -54,7 +54,7 @@ function load()
 	local color="$2"
 	
 	if [[ -n "$color" ]]; then
-        echo -ne "$color"  # Reset color
+        echo -ne "$color" 
     fi
     
     for (( i=0; i<${#F3}; i++ ))
@@ -75,13 +75,21 @@ function load()
 	echo
 }
 
+function banner()
+{
+    clear || cls
+    local Ban="
+_________               ______________          v2.0.3
+__/ ____/__________     ___/ __ \__/ /___________________ 
+_/ / __ _/ _ \  __ \______/ /_/ /_/ __ \  __ \\\  __ \  _ \\
+/ /_/ / /  __/ /_/ /_____/  ___/_/ / / / /_/ // / / /  __/
+\____/  \___/\____/     /_/     /_/ /_/\____//_/ /_/\___/ 
+	"
+	slow "$Ban" "$P"
+}
+
 function installed()
 {
-	apt install ruby -y
-	gem install lolcat
-	apt install figlet -y
-	let TRACKER=$TRACKER+1
-	
 	redirection
 }
 
@@ -92,17 +100,12 @@ function internet()
 
 function setupEnv()
 {
-    clear || cls
-	figlet Geo-Phone | lolcat 
-	
     load " Setting Up Your Environment" "$INFO"
 
     for i in "${LIB[@]}"
 	do
 		pip install $i
 	done
-
-    pip install webbrowser
 
 	slow " Installation Successfully Finished." "$INFO"
 	slow " Press [ENTER] To Continue" "$INFO"
@@ -132,29 +135,23 @@ Usage: python3 phone.py [OPTION...]
 
 function redirection()
 {
-	figlet Geo-Phone | lolcat &>> log
-	if [[ $? == 0 ]]; then
-		setupEnv
-	elif [[ $? != 0 ]] && [[ $TRACKER == 2 ]]; then
-		setupEnv
-	else
-		installed
-	fi
+	setupEnv
 }
 
 function main()
 {
+	banner
 	internet
 	if [[ $? != 0  ]]; then 
-		slow '\n'
+	# if [[ $? == 0  ]]; then 
 		load " Please Check Your Internet Connection" "$ERR"
-		slow '\n'
+		slow ' '
 		exit 
 	fi
 
 	installed
 
-    	clear || cls
+    clear || cls
  	F30N1X
 	exit
 }
