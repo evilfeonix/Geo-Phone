@@ -29,9 +29,10 @@ yellow="\033[93;1m"
 purple="\033[95;1m"
 
 
-add=f"{red}[{stop}+{red}]{green} "
-error=f"{green}[{stop}-{green}]{red} "
-info=f"{blue}[{stop}•{blue}]{purple} "
+add=f"{purple}[{stop}+{purple}]{green} "
+error=f"{purple}[{stop}-{purple}]{red} "
+info=f"\033[97;1m[{purple}•\033[97;1m]{purple} "
+note=f"\033[97;1m[{purple}!\033[97;1m]{purple} "
 version = "2.0.3.6"
 
 
@@ -64,15 +65,25 @@ def F30N1X():
     return usage
     os.sys.exit()
 
+def banner():
+    os.system("clear || cls")
+    return f"""{purple} 
+_________               ______________          {cyan}v\033[97;1m2.0.3{purple}
+__/ ____/__________     ___/ __ \__/ /___________________ 
+_/ / __ _/ _ \  __ \______/ /_/ /_/ __ \  __ \\\  __ \  _ \\
+/ /_/ / /  __/ /_/ /_____/  ___/_/ / / / /_/ // / / /  __/
+\____/  \___/\____/     /_/     /_/ /_/\____//_/ /_/\___/ 
+{stop}"""
+
 
 try:import requests, opencage, countryinfo, phonenumbers, urllib.request
 except ModuleNotFoundError:
     
     slow(banner())
-    slow(f"\n{red}[!] Ops! Sorry,"                                    )
+    slow(f"\n{note}Ops! Sorry,"                                    )
     slow(f'{info}Look Like This Script Is Missing Some Requirment.{red}')
     slow('===========================================================')
-    slow(f'        {green}Run: {purple}bash installer.sh{red}  	     ')
+    slow(f'        	{green}Run: {purple}bash installer.sh{red}   ')
     slow('===========================================================')
     slow('\033[0m')
     os.sys.exit()
@@ -87,17 +98,6 @@ def internet():
         s.connect_ex(("www.google.com",80))
         return True
     except Exception:return False
-
-def banner():
-    os.system("clear || cls")
-    return f"""{purple} 
-_________               ______________          {cyan}v\033[97;1m2.0.3{purple}
-__/ ____/__________     ___/ __ \__/ /___________________ 
-_/ / __ _/ _ \  __ \______/ /_/ /_/ __ \  __ \\\  __ \  _ \\
-/ /_/ / /  __/ /_/ /_____/  ___/_/ / / / /_/ // / / /  __/
-\____/  \___/\____/     /_/     /_/ /_/\____//_/ /_/\___/ 
-{stop}"""
-
     
 def aboutus():
     
@@ -206,31 +206,44 @@ def infoga(cncode,number):
                 valid_number=True
             else:
                 valid_number=False
-                # slow(f"{err}Invalid Phone Number: {num}")
+                slow(f"{error}Phone Number Seems To Be Invalid!\n")
+                os.sys.exit()
         except Exception as e:
             slow(f"{error}Error Parsing Phone Number: {e}{stop}\n")
             os.sys.exit()
-
+            
+        gc = geocoder.description_for_number(phoneNumber,"en")
+        c = carrier.name_for_number(phoneNumber,"en")
         load(f"{info}Collecting Country Information")
         time.sleep(2)
+        if not (gc and c):
+            slow(f"{error}Can Not Get Country Information!")
+            time.sleep(1)
         inter = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.INTERNATIONAL)
         nation = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.NATIONAL)
         e164 = phonenumbers.format_number(phoneNumber,phonenumbers.PhoneNumberFormat.E164)
 
         load(f"{info}Running OSINT Lookup")
         time.sleep(3)
+        if not (gc and c):
+            slow(f"{error}Running OSINT Lookup Error!")
+            time.sleep(1)
         gc = geocoder.description_for_number(phoneNumber,"en")  # country
         tz = timezone.time_zones_for_number(phoneNumber)        # timezone
         c = carrier.name_for_number(phoneNumber,"en")           # ISP   (INTERNET SERVICE PROVIDER)
 
         load(f"{info}Running OVH Scan")
         time.sleep(3)
+        if not (gc and c):
+            slow(f"{error}Running OVH Scan Error!")
+            time.sleep(1)
         local = phoneNumber.national_number
         cncode = phoneNumber.country_code
 
         load(f"{info}Mapping Number")
         time.sleep(1)
-        act=input(f'{purple}Press [{stop}ENTER{purple}]{purple} To Continue{stop} ')
+        
+        act=input(f'\n{purple}Press [{stop}ENTER{purple}]{purple} To Continue{stop} ')
         time.sleep(1)
         slow(banner())
         
@@ -401,8 +414,8 @@ def main():
     update = argument.update_script
     about = argument.about_tool
 
-    if internet():
-    # if not internet():
+    # if internet():
+    if not internet():
         slow(f"\n{error}Please Check Your Internet Connection{stop}\n")
         os.sys.exit()
 
@@ -419,7 +432,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         slow(f"")
         slow(f"\n{error} User Requested an Interrupt!")
-        load(f"{error} Program Running Down...{stop}")
+        load(f"{error} Program Running Down{stop}")
         time.sleep(2)
         slow(f"")
         os.sys.exit()
