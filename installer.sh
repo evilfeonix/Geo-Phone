@@ -16,8 +16,8 @@ P="\e[95m"
 Y="\e[43m"
 
 
-ERR="$G[$S-$G]$R "
-INFO="$R[$S+$R]$G "
+ERR="$P[$S-$P]$R "
+INFO="$P[$S+$P]$G "
 
 LIB=("urllib2"
 	 "requests"
@@ -95,7 +95,7 @@ function installed()
 
 function internet()
 {
-	wget -q --spider http://google.com
+	wget http://google.com > /dev/null 2>&1
 }
 
 function setupEnv()
@@ -144,11 +144,12 @@ function main()
 	internet
 	if [[ $? != 0  ]]; then 
 	# if [[ $? == 0  ]]; then 
+		slow " Status: Offline." "$INFO"
 		load " Please Check Your Internet Connection" "$ERR"
 		slow ' '
 		exit 
 	fi
-
+	slow " Status: Online." "$INFO"
 	installed
 
     clear || cls
