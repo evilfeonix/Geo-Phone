@@ -1,6 +1,6 @@
 ![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg) 
 
-# Geo-Phone
+
 
 <div align='center'>
 
@@ -9,7 +9,7 @@
 ![Geo-Phone](https://github.com/evilfeonix/Geo-Phone/blob/main/phone.png)
 
 </div>
-
+# Geo-Phone
 **Geo-Phone** is an OSINT tool that enables users to track and map phone numbers from around the world. With a user-friendly interface, **GeoPhone** provides quick insights into the origin of any phone number, displaying the country and marking an approximate location on a map. 
 
 ## Tested on:
@@ -49,12 +49,6 @@ Download and Install kali-linux from their official website and type following c
       sudo apt update && sudo apt upgrade
 ```
 ```
-      sudo apt install git
-```
-```
-      sudo apt install python3 python3-pip
-```
-```
       git clone https://github.com/evilfeonix/Geo-Phone.git
 ```
 ```
@@ -86,10 +80,24 @@ Download and Install kali-linux from their official website and type following c
 ### Geo-Phone Map
 A sample of **Geo Phone** outputed map:
 
-![EvilFeonix Basic v1.0](https://github.com/evilfeonix/Geo-Phone/blob/main/maps.jpg)
+![Geo-Phone v2.0.3](https://github.com/evilfeonix/Geo-Phone/blob/main/maps.jpg)
+
+
+# Support US 
+Support us by following us!,
+
+Also star and fork our repositories.
+
 
 ### License
 
 [GNU General Public License v3.0](https://github.com/evilfeonix/Geo-Phone/blob/main/LICENSE)
 
+<div align=center>
+
+Happy Phone Number OSINT & Tracking
+
+👨🏾‍💻👨🏾‍💻👨🏾‍💻
+
+<div>
 
