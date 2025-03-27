@@ -283,10 +283,10 @@ def infoga(cncode,number):
             try:
                 Key = "42c84373c47e490ba410d4132ae64fc4"  # ~mine
                 # Key = "03c48dae07364cabb7f121d8c1519492"    # 
-                code = OpenCageGeocode(Key)
+                coder = OpenCageGeocode(Key)
                 query = str(gcd)
 
-                results = code.geocode(query)
+                results = coder.geocode(query)
                 lat = results[0]['geometry']['lat']
                 lng = results[0]['geometry']['lng']
 
